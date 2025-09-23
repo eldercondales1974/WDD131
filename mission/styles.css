@@ -5,6 +5,7 @@ h1 {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-align: center;
+    font-style: normal;
 }
 h3 {
     font-family: Georgia, sans-serif;
