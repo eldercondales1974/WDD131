@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Event Listener Demo</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font for a clean, modern look */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="p-4">
+
+    <div class="max-w-xl w-full bg-white p-6 md:p-8 rounded-xl shadow-2xl border border-gray-100">
+        <h1 class="text-3xl font-extrabold text-gray-800 mb-6 text-center">Interactive Event Handling Demo</h1>
+        
+        <!-- Section 1: Button Click Event -->
+        <h2 class="text-xl font-semibold text-gray-700 mb-3 border-b pb-2">1. Click Event (Button)</h2>
+        <p class="text-gray-600 mb-4">Clicking below fires a <code>'click'</code> event and updates the status.</p>
+
+        <!-- The interactive element -->
+        <button id="eventButton" 
+                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition duration-150 ease-in-out shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50">
+            Click Me!
+        </button>
+
+        <!-- Output area for click events -->
+        <div id="outputAreaClick" 
+             class="mt-4 p-4 bg-indigo-50 border-l-4 border-indigo-500 text-indigo-800 rounded-r-lg text-sm transition-all duration-300">
+            Current Status: Waiting for button click...
+        </div>
+
+        <!-- Section 2: Input and Keydown Events -->
+        <h2 class="text-xl font-semibold text-gray-700 mt-8 mb-3 border-b pb-2">2. Keyboard Events (Input Field)</h2>
+        <p class="text-gray-600 mb-4">Type in the box to see the <code>'input'</code> event. Press <kbd class="px-2 py-1 bg-gray-200 rounded text-xs font-mono">Enter</kbd> to see the global <code>'keydown'</code> event.</p>
+        
+        <input type="text" id="eventInput" placeholder="Start typing here..." 
+               class="w-full p-3 border border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-indigo-500 transition duration-150">
+
+        <!-- Output area for input events -->
+        <div id="outputAreaInput" 
+             class="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-500 text-yellow-800 rounded-r-lg text-sm transition-all duration-300">
+            Character Count: 0
+        </div>
+        <div id="outputAreaKeydown" 
+             class="mt-2 p-4 bg-red-50 border-l-4 border-red-500 text-red-800 rounded-r-lg text-sm transition-all duration-300 hidden">
+            <span class="font-semibold">Keydown Event:</span> Waiting for 'Enter'...
+        </div>
+    </div>
+
+    <script>
+        // --- Event Handlers ---
+
+        // Handler for the 'click' event on the button
+        function handleButtonClick(e) {
+            const output = document.getElementById('outputAreaClick');
+            const randomNum = Math.floor(Math.random() * 100) + 1;
+            
+            output.innerHTML = `
+                <span class="font-semibold">Click Event Fired!</span> 
+                (Random Check: ${randomNum})
+                <br>
+                Event Type: <span class="font-mono text-xs">${e.type}</span>
+            `;
+            
+            // Conditional logic to change style
+            if (randomNum > 75) {
+                output.className = 'mt-4 p-4 border-l-4 rounded-r-lg text-sm transition-all duration-300 bg-green-100 border-green-600 text-green-800';
+            } else {
+                output.className = 'mt-4 p-4 border-l-4 rounded-r-lg text-sm transition-all duration-300 bg-indigo-50 border-indigo-500 text-indigo-800';
+            }
+        }
+
+        // Handler for the 'input' event on the text field
+        function handleInput(e) {
+            const output = document.getElementById('outputAreaInput');
+            const textLength = e.target.value.length;
+            
+            output.innerHTML = `Character Count: ${textLength}. Current Text: <span class="font-mono">${e.target.value}</span>`;
+            
+            // Conditional check for length
+            if (textLength > 20) {
+                 output.className = 'mt-4 p-4 border-l-4 rounded-r-lg text-sm transition-all duration-300 bg-yellow-50 border-yellow-700 text-yellow-900';
+            } else {
+                 output.className = 'mt-4 p-4 border-l-4 rounded-r-lg text-sm transition-all duration-300 bg-yellow-50 border-yellow-500 text-yellow-800';
+            }
+        }
+
+        // Handler for the global 'keydown' event
+        function handleKeydown(e) {
+            const output = document.getElementById('outputAreaKeydown');
+            
+            // Use conditional logic to check if the pressed key is 'Enter'
+            if (e.key === 'Enter') {
+                output.classList.remove('hidden'); // Show the warning box
+                output.innerHTML = `<span class="font-semibold">GLOBAL KEYDOWN DETECTED!</span> Key: ${e.key}. Default action (like form submission) prevented.`;
+                e.preventDefault(); // Stop the default browser action (like submitting a form if this was inside one)
+            } else {
+                // Optionally hide it if another key is pressed, or just keep it hidden
+            }
+            console.log(`Key Pressed Globally: ${e.key}`);
+        }
+
+
+        // --- Initialization ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Click Listener
+            const button = document.getElementById('eventButton');
+            button.addEventListener('click', handleButtonClick);
+
+            // 2. Input Listener (Fires on every change to input value)
+            const inputField = document.getElementById('eventInput');
+            inputField.addEventListener('input', handleInput);
+
+            // 3. Keydown Listener (Attached to the whole document)
+            document.addEventListener('keydown', handleKeydown);
+
+            console.log('All event listeners attached successfully.');
+        });
+    </script>
+</body>
+</html>
