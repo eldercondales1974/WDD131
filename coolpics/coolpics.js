@@ -15,3 +15,27 @@ function handleResize( ) {
 }
 handleResize();
 window.addEventListener("resize", handleResize);
+
+
+const gallery = document.querySelector(".nav-centereds");
+gallery.addEventListener("click", (event) => {
+    const clickElement = event.target;
+    if (clickElement.tagName === "IMG" && clickElement.classList.contains("gallery-image")) {
+        const bigscreen = clickElement.getAttribute("data-full-src");
+        const altText = clickElement.getAttribute("alt");
+        const dialog = document.createElement("dialog");
+        dialog.innerHTML = `
+                    <img src="${fullSrc}" alt="${altText}">
+                    <button class="close-viewer" aria-label="Close image viewer">X</button>`;
+        dialog.showModal();
+        const closeButton = dialog.querySelector(".close-viewer");
+        closeButton.addEventListener("click", () => {
+            dialog.close();
+        } 
+        )   
+        dialog.addEventListener("close", () => {
+                dialog.remove();
+        })         
+    }
+})
+
