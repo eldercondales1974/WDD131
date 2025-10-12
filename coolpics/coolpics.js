@@ -17,10 +17,10 @@ handleResize();
 window.addEventListener("resize", handleResize);
 
 
-const gallery = document.querySelector(".nav-centereds");
+const gallery = document.querySelector(".gallery");
 gallery.addEventListener("click", (event) => {
     const clickElement = event.target;
-    if (clickElement.tagName === "IMG" && clickElement.classList.contains("gallery-image")) {
+    if (clickElement.tagName === "IMG" && clickElement.classList.contains("gallery")) {
         const bigscreen = clickElement.getAttribute("data-full-src");
         const altText = clickElement.getAttribute("alt");
         const dialog = document.createElement("dialog");
