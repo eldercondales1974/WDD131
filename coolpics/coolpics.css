@@ -33,7 +33,6 @@ img {
 }
 .gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr;
 }
 .figure {
     border: 5px solid #ebebeb;
@@ -46,6 +45,7 @@ img {
 }
 .nav-centered {
     align-content: center;
+    display: none;
 }
 @media  screen and (min-width: 700px) {
     .gallery {
@@ -53,9 +53,17 @@ img {
     }
     
 }
-@media  screen {
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+/*@media  screen {
     .nav-centered {
         display: none;
     }
     
+}*/
+.hide {
+    display: none;
 }
