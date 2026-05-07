@@ -54,3 +54,7 @@ p {
 .dark h2 {
     color: lightblue;
 }
+body.dark {
+    background-color: black;
+    color: white;
+}
