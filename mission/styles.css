@@ -3,7 +3,7 @@
     border: 1px black solid;
     /*margin: 3.5em auto;*/
     margin: 8%;
-    padding: 9em;
+    padding: 8em;
     width: 90%;
 }
 
@@ -69,5 +69,5 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0px;
+    margin: 100px;
 }
