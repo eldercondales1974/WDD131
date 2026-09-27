@@ -1,8 +1,10 @@
 #content {
     max-width: 680px;
     border: 1px black solid;
-    margin: 3.5em auto;
-    padding: 2em;
+    /*margin: 3.5em auto;*/
+    margin: 30px auto;
+    padding: 8em;
+    width: 90%;
 }
 
 h1 {
@@ -62,7 +64,7 @@ body {
     background-color: white;
     /*color: black;*/
     font-family: 'Times New Roman', Times, serif;
-    transition: background-color 0.3s ease;
+    /*transition: background-color 0.3s ease;*/
     display: flex;
     justify-content: center;
     align-items: center;
