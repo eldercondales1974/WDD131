@@ -1,5 +1,5 @@
 #content {
-    max-width: 600px;
+    max-width: 680px;
     border: 1px black solid;
     margin: 3.5em auto;
     padding: 2em;
@@ -60,7 +60,12 @@ body.dark {
 }
 body {
     background-color: white;
-    color: black;
-    font-family: sans-serif;
+    /*color: black;*/
+    font-family: 'Times New Roman', Times, serif;
     transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0px;
 }
